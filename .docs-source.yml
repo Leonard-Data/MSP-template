@@ -18,7 +18,8 @@ description: >
 # Relative path to the documentation root inside this repository.
 docs_path: docs
 
-# Optional discovery labels. Keep them short and lowercase when possible.
+# Optional discovery labels. Omit `tags` if you do not need them; the portal treats missing tags as an empty list.
+# Keep them short and lowercase when possible.
 tags:
   - documentation
   - template

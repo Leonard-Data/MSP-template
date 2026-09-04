@@ -18,9 +18,9 @@ That keeps documentation close to the team that maintains it while still publish
 
 ## Getting started
 
-1. Review `.docs-source.yml` and set the source `id`, `name`, `category`, `description`, and `tags` for your section.
+1. Review `.docs-source.yml` and set the source `id`, `name`, `category`, and `description` for your section; add `tags` only if they help discovery.
 2. Update `docs/README.md` so the overview matches your subject area.
-3. Keep the folders you need today; remove or leave the rest until you have real content for them.
+3. Keep the folders you need today; if you remove one, update `.docs-source.yml` so `navigation` only lists folders that still exist.
 4. Add pages in the folder that best matches the reader's question.
 5. Open a pull request with link and asset checks completed.
 

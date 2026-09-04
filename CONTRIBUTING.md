@@ -57,7 +57,7 @@ Update it when you change:
 - the folder list represented in `navigation`
 - the documentation root if `docs_path` changes
 
-For field-by-field guidance, see `docs/reference/docs-source-yml.md`.
+For field-by-field guidance, see `docs/reference/README.md`.
 
 ## Review expectations
 

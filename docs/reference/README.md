@@ -11,8 +11,13 @@
 | `category` | string | Portal grouping label |
 | `description` | string | Short summary for listings and search context |
 | `docs_path` | string | Relative path to the documentation root, usually `docs` |
-| `tags` | list of strings | Search and discovery labels |
 | `navigation` | list of strings | Ordered section names used when building navigation |
+
+## Optional fields supported by the current portal scripts
+
+| Field | Type | Purpose |
+| --- | --- | --- |
+| `tags` | list of strings | Search and discovery labels; omitted `tags` behave the same as an empty list |
 
 ## Conventions
 
@@ -20,7 +25,8 @@
 - Use a human-readable `name`; it does not need to match the repository name exactly.
 - Keep `description` concise and factual.
 - Point `docs_path` at the directory the portal should sync.
-- Use short tags that improve discovery without becoming a keyword dump.
+- Add short tags when they improve discovery without becoming a keyword dump.
+- If you omit `tags`, MSP Portal treats them as an empty list.
 - List only real sections in `navigation`, in the order readers should see them.
 
 ## Example
