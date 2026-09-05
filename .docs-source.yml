@@ -27,13 +27,4 @@ tags:
 
 # Section order used by the portal when building navigation.
 # Keep only folders that actually exist in the repository.
-navigation:
-  - concepts
-  - architecture
-  - guides
-  - patterns
-  - components
-  - examples
-  - snippets
-  - troubleshooting
-  - reference
+navigation: []

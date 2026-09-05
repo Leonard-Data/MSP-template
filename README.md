@@ -19,35 +19,32 @@ That keeps documentation close to the team that maintains it while still publish
 ## Getting started
 
 1. Review `.docs-source.yml` and set the source `id`, `name`, `category`, and `description` for your section; add `tags` only if they help discovery.
-2. Update `docs/README.md` so the overview matches your subject area.
-3. Keep the folders you need today; if you remove one, update `.docs-source.yml` so `navigation` only lists folders that still exist.
-4. Add pages in the folder that best matches the reader's question.
-5. Open a pull request with link and asset checks completed.
+2. Update `docs/README.md` so the published overview matches your subject area.
+3. Add reader-facing Markdown and required assets directly under `docs/`; keep the publication directory flat.
+4. Use `guides/` for contributor instructions and content-type guidance that MSP should not publish.
+5. Run `node scripts/review-content.mjs`; when MSP Portal is available beside this repository, also run `node scripts/review-content.mjs --portal ../msp`.
+6. Open a pull request after the automated, evidence, and applicable visual or executable checks pass.
 
 ## Repository layout
 
 | Path | Purpose |
 | --- | --- |
 | `.docs-source.yml` | Source metadata consumed by MSP Portal sync and build scripts |
-| `docs/README.md` | Landing page for the documentation section |
-| `docs/concepts/` | Foundational ideas, ownership, terminology, and mental models |
-| `docs/architecture/` | System shape, boundaries, decisions, and diagrams |
-| `docs/guides/` | Step-by-step how-to content |
-| `docs/patterns/` | Repeatable approaches and recommended structures |
-| `docs/components/` | Reusable building blocks, modules, or feature areas |
-| `docs/examples/` | Worked examples and sample implementations |
-| `docs/snippets/` | Small copy-pasteable fragments |
-| `docs/troubleshooting/` | Common mistakes, failure modes, and recovery steps |
-| `docs/reference/` | Schemas, conventions, commands, and lookup material |
-| `docs/assets/` | Images, diagrams, and other linked static assets |
+| `AGENT.md` | MSP technical-writer persona and required operating contract |
+| `.agents/skills/technical-writing/` | Reader-UX and specialist playbooks for architecture, workflows, diagrams, code, breakdowns, and review |
+| `scripts/review-content.mjs` | Automated MSP Markdown publication gate |
+| `docs/` | Flat publication surface synchronized into MSP Portal |
+| `docs/README.md` | Published landing page for the documentation source |
+| `guides/` | Contributor and content-type guidance excluded from portal sync |
 | `.github/PULL_REQUEST_TEMPLATE.md` | Review checklist for documentation changes |
 
-## Choosing the right folder
+## Choosing the content approach
 
-Use the lightest folder that matches the reader's need:
+Keep published pages directly under `docs/`. Use the lightest content approach that matches the reader's need:
 
 - **Concepts** for "what is this and who owns it?"
 - **Architecture** for "how is it structured?"
+- **Workflows** for "what happens, who acts, and how does state change?"
 - **Guides** for "how do I do it?"
 - **Patterns** for "what approach should I repeat?"
 - **Components** for "what reusable pieces exist?"
@@ -56,19 +53,19 @@ Use the lightest folder that matches the reader's need:
 - **Troubleshooting** for "what went wrong?"
 - **Reference** for "what are the exact fields, commands, or rules?"
 
-If a page could fit in two places, choose the folder readers are most likely to browse first and link to related material instead of duplicating it.
+The detailed playbooks live under `guides/` and `.agents/skills/technical-writing/`. Link related published pages from `docs/README.md` instead of duplicating content.
 
 ## Markdown, links, and images
 
 - Prefer plain Markdown that renders well on GitHub and in static site pipelines.
 - Use one `#` heading per file and descriptive filenames such as `add-a-documentation-page.md`.
 - Keep links relative inside the repository so they survive sync into MSP Portal.
-- Store images and diagrams in `docs/assets/` and use relative paths from the page that references them.
+- Store images and diagrams directly under `docs/` beside the page that references them.
 - Add alt text for images and avoid embedding text only in screenshots when a Markdown explanation would be clearer.
 
 ## Review expectations
 
-A documentation pull request should make it easy for reviewers to answer:
+A documentation pull request must pass the [content review gateway](guides/reference/content-review-gateway.md) and make it easy for reviewers to answer:
 
 - what changed
 - which audience the page is for

@@ -9,24 +9,17 @@ The goal of this template is balanced structure: enough consistency for MSP Port
 1. Read `docs/README.md` to understand the current section structure.
 2. Confirm whether the change belongs in an existing page or a new file.
 3. Update `.docs-source.yml` only when source-level metadata changes.
-4. Check links, image paths, and headings before opening a pull request.
+4. Run the [content review gateway](guides/reference/content-review-gateway.md) before opening a pull request.
 
-## Folder selection guidance
+## Publication boundary
 
-Choose the folder based on the reader's job:
+Keep the two content surfaces separate:
 
-- `docs/concepts/` for context, ownership, and definitions
-- `docs/architecture/` for structure and technical decisions
-- `docs/guides/` for step-by-step tasks
-- `docs/patterns/` for reusable approaches
-- `docs/components/` for reusable parts or feature areas
-- `docs/examples/` for worked samples
-- `docs/snippets/` for small reusable fragments
-- `docs/troubleshooting/` for common issues and fixes
-- `docs/reference/` for exact fields, commands, and conventions
-- `docs/assets/` for linked images and static files
+- `docs/` contains only reader-facing pages and the assets MSP needs to render them. Keep it flat.
+- `guides/` contains contributor instructions, authoring standards, and content-type guidance that MSP should not publish.
+- `.agents/skills/` contains agent-only operating instructions.
 
-When a page overlaps multiple folders, put it where readers will look first and link to the related page rather than duplicating content.
+Choose a descriptive kebab-case filename for every additional published page and link it from `docs/README.md` when readers need to discover it by browsing.
 
 ## Markdown conventions
 
@@ -40,7 +33,7 @@ When a page overlaps multiple folders, put it where readers will look first and 
 ## Links and images
 
 - Use relative links for pages and assets within the repository.
-- Keep images in `docs/assets/` unless a subfolder makes ownership clearer.
+- Keep published images directly under `docs/` beside the Markdown that uses them.
 - Add meaningful alt text.
 - Prefer SVG or compressed PNG/WebP for diagrams when practical.
 - Remove or replace broken links before requesting review.
@@ -57,16 +50,31 @@ Update it when you change:
 - the folder list represented in `navigation`
 - the documentation root if `docs_path` changes
 
-For field-by-field guidance, see `docs/reference/README.md`.
+For field-by-field guidance, see `guides/reference/README.md`.
 
 ## Review expectations
+
+A documentation change is ready for review only after this command succeeds:
+
+```shell
+node scripts/review-content.mjs
+```
+
+When the MSP Portal repository is available beside this checkout, also bind the review to its current renderer:
+
+```shell
+node scripts/review-content.mjs --portal ../msp
+```
+
+Fix every error. Resolve each warning in the content or explain its safe disposition in the pull request. Code, diagrams, tables, raw HTML, portal-specific extensions, and complex link structures also need the applicable runtime or visual check described by the gateway.
 
 A pull request should describe:
 
 - the documentation scope
 - the paths changed under `docs/`
 - whether `.docs-source.yml` changed
-- the link and asset checks you ran
+- the automated, renderer, runtime, and visual checks you ran
+- any unverified claim or check that could not be completed
 - anything reviewers should open locally or review carefully
 
 If the change adds a new page, reviewers should be able to answer three questions quickly: why this page exists, why it belongs in that folder, and how readers will find it.
